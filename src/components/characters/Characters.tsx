@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import s from './Characters.module.scss';
 import { Button } from '../button/Button';
-import { ICharacter, CharactersFromGraphQL } from '../../types';
+import { ICharacter, CharactersFromGraphQL, AllPeople } from '../../types';
 import '../../pages/api/characters';
 
 type Props = {
@@ -39,12 +39,14 @@ export function Characters({ peopleResponse }: Props): JSX.Element {
     peopleResponse?.allPeople?.pageInfo.endCursor ?? '',
   );
 
+  const [hasNextPage, setHasNextPage] = useState<boolean>(true);
+
   const fetchMore = async (): Promise<void> => {
     // TODO sækja gögn frá /pages/api/characters.ts (gegnum /api/characters), ef það eru fleiri
     // (sjá pageInfo.hasNextPage) með cursor úr pageInfo.endCursor
     setLoading(true);
 
-    const url = `http://localhost:3000/api/characters?after=${nextPage}`;
+    const url = `/api/characters?after=${nextPage}`;
     let result = null;
     try {
       result = await fetch(url);
@@ -63,6 +65,7 @@ export function Characters({ peopleResponse }: Props): JSX.Element {
     const response: CharactersFromGraphQL = json;
     setCharacters([...characters, ...response.allPeople?.people ?? []]);
     setNextPage(response.allPeople?.pageInfo.endCursor ?? '');
+    setHasNextPage(response.allPeople?.pageInfo?.hasNextPage ?? true);
     setLoading(false);
   };
 
@@ -75,7 +78,7 @@ export function Characters({ peopleResponse }: Props): JSX.Element {
           </li>
         ))}
       </ul>
-      <Button disabled={loading} onClick={fetchMore}>Fetch more</Button>
+      <Button disabled={loading} hasNextPage={hasNextPage} onClick={fetchMore}>Fetch more</Button>
     </section>
   );
 }

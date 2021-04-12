@@ -61,5 +61,5 @@ export async function fetchCharacters(after = '' as string): Promise<CharactersF
     ${characterFragment}
   `;
 
-  return fetchSwapi<any>(query, { after });
+  return fetchSwapi<CharactersFromGraphQL>(query, { after });
 }
