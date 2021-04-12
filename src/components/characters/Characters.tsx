@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import s from './Characters.module.scss';
 import { Button } from '../button/Button';
-import { ICharacter, CharactersFromGraphQL, AllPeople } from '../../types';
+import { ICharacter, CharactersFromGraphQL } from '../../types';
 import '../../pages/api/characters';
 
 type Props = {
@@ -24,7 +24,7 @@ type Props = {
  *  .filter((Boolean as unknown) as ExcludesFalse);
  * items verður Array<T> en ekki Array<T | null>
  */
-type ExcludesFalse = <T>(x: T | null | undefined | false) => x is T;
+// type ExcludesFalse = <T>(x: T | null | undefined | false) => x is T;
 
 export function Characters({ peopleResponse }: Props): JSX.Element {
   // TODO meðhöndla loading state, ekki þarf sérstaklega að villu state
