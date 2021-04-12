@@ -4,30 +4,31 @@ import { Characters } from '../../components/characters/Characters';
 
 import { Layout } from '../../components/layout/Layout';
 import { fetchCharacters } from '../../lib/swapi';
-import { IPeopleResponse } from '../../types';
+import { CharactersFromGraphQL } from '../../types';
 
 export type PageProps = {
-  peopleResponse: any; // TODO EKKI any
+  peopleResponse: CharactersFromGraphQL; // TODO EKKI any
 };
 
 export default function PageComponent(
   data: InferGetServerSidePropsType<typeof getServerSideProps>,
 ): JSX.Element {
   const { peopleResponse } = data;
+
   return (
     <Layout>
       <Head>
         <title>Star Wars characters</title>
       </Head>
       <h1>Star Wars characters</h1>
-      <Characters />
+      <Characters peopleResponse={peopleResponse} />
     </Layout>
   );
 }
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
   // TODO sækja karaktera
-  const peopleResponse = null;
+  const peopleResponse = await fetchCharacters();
 
   return {
     props: {

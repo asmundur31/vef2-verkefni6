@@ -8,6 +8,11 @@ type Props = {
 };
 
 export function Button({ children, onClick, disabled = false }: Props): JSX.Element {
+  if (disabled) {
+    return (
+      <div className={s.button__loading}>Fetching...</div>
+    );
+  }
   return (
     <button
       className={classnames(s.button, { [s.disabled]: disabled })}

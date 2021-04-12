@@ -1,4 +1,32 @@
 
 .film {
+  display: flex;
+  flex-direction: column;
   
+  &__title {
+    margin-bottom: 1em;
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__openingCrawl {
+    padding-right: 4em;
+    padding-bottom: 3em;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &__link {
+    margin-right: 2em;
+  }
+
+  &__line {
+    margin-bottom: 2em;
+  }
 }
