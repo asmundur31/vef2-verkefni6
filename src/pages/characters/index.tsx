@@ -4,10 +4,10 @@ import { Characters } from '../../components/characters/Characters';
 
 import { Layout } from '../../components/layout/Layout';
 import { fetchCharacters } from '../../lib/swapi';
-import { CharactersFromGraphQL } from '../../types';
+import { ICharactersFromGraphQL } from '../../types';
 
 export type PageProps = {
-  peopleResponse: CharactersFromGraphQL; // TODO EKKI any
+  peopleResponse: ICharactersFromGraphQL; // TODO EKKI any
 };
 
 export default function PageComponent(

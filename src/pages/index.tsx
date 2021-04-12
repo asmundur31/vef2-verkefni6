@@ -6,7 +6,7 @@ import { Film } from '../components/film/Film';
 import { Layout } from '../components/layout/Layout';
 import { characterFragment } from '../graphql/characterFragment';
 import { fetchSwapi } from '../lib/swapi';
-import { IFilm, FilmsFromGraphQL } from '../types';
+import { IFilm, IFilmsFromGraphQL } from '../types';
 
 export type PageProps = {
   films: Array<IFilm> | null;
@@ -54,7 +54,7 @@ const query = `
 `;
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
-  const films = await fetchSwapi<FilmsFromGraphQL>(query);
+  const films = await fetchSwapi<IFilmsFromGraphQL>(query);
 
   return {
     props: {

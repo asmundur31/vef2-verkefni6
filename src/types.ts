@@ -22,31 +22,31 @@ export interface IFilm {
   characterConnection: ICharacterConnection
 }
 
-export interface AllFilms {
+export interface IAllFilms {
   films: Array<IFilm>
 }
 
-export interface FilmsFromGraphQL {
-  allFilms?: AllFilms
+export interface IFilmsFromGraphQL {
+  allFilms?: IAllFilms
 }
 
-export interface CharacterFromGraphQL {
+export interface ICharacterFromGraphQL {
   person?: ICharacter
 }
 
-export interface AllPeople {
-  pageInfo: PageInfo
+export interface IAllPeople {
+  pageInfo: IPageInfo
   people: Array<ICharacter>
 }
 
-export interface PageInfo {
+export interface IPageInfo {
   startCursor: string
   endCursor: string
   hasNextPage: boolean
 }
 
-export interface CharactersFromGraphQL {
-  allPeople?: AllPeople
+export interface ICharactersFromGraphQL {
+  allPeople?: IAllPeople
 }
 // TODO hér ættum við að útbúa interface fyrir öll gögn sem við vinnum með (t.d. IFilm, IPaging)
 // og svör sem við fáum frá GraphQL endapunkti

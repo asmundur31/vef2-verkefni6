@@ -4,11 +4,11 @@ import Link from 'next/link';
 
 import s from './Characters.module.scss';
 import { Button } from '../button/Button';
-import { ICharacter, CharactersFromGraphQL } from '../../types';
+import { ICharacter, ICharactersFromGraphQL } from '../../types';
 import '../../pages/api/characters';
 
 type Props = {
-  peopleResponse?: CharactersFromGraphQL
+  peopleResponse?: ICharactersFromGraphQL
 };
 
 /**
@@ -62,7 +62,7 @@ export function Characters({ peopleResponse }: Props): JSX.Element {
 
     const json = await result.json();
 
-    const response: CharactersFromGraphQL = json;
+    const response: ICharactersFromGraphQL = json;
     setCharacters([...characters, ...response.allPeople?.people ?? []]);
     setNextPage(response.allPeople?.pageInfo.endCursor ?? '');
     setHasNextPage(response.allPeople?.pageInfo?.hasNextPage ?? true);
